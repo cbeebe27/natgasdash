@@ -6,11 +6,13 @@ Authors@R:
            family = "lastname",
            role = c("aut", "cre"),
            email = "your@email.com")
-Description: What the package does (one paragraph).
+Description: This package acts as a visualization dashboard to better enhance the user experience and understanding of the history of Natural Gas in Alberta. The package loads in the publically available data from AECO (https://www.aer.ca/providing-information/data-and-reports/statistical-reports/st98/statistics-and-data).
 License: What license is it under?
 Imports: 
     config (>= 0.3.2),
+    dplyr,
     golem (>= 0.4.1),
+    magrittr,
     readxl,
     shiny (>= 1.8.0)
 Encoding: UTF-8
