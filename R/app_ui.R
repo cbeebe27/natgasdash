@@ -10,8 +10,11 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     fluidPage(
-      h1("natgasdash")
-    )
+      h1("natgasdash"),
+      shiny::tabsetPanel(
+        type = 'tabs',
+        shiny::tabPanel("Bitumen", mod_bitumen_ui("bitumen_1"))
+    ))
   )
 }
 
