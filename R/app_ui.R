@@ -10,10 +10,13 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     fluidPage(
-      h1("natgasdash"),
+      h1("AECO Natural Gas Historical Dashboard"),
       shiny::tabsetPanel(
         type = 'tabs',
-        shiny::tabPanel("Bitumen", mod_bitumen_ui("bitumen_1"))
+        shiny::tabPanel("Daily Average Production", mod_marketablegas_ui("marketablegas_1")),
+        shiny::tabPanel("Bitumen", mod_bitumen_ui("bitumen_1")),
+        shiny::tabPanel("Wells", mod_wells_ui("wells_1")),
+        shiny::tabPanel("Oilsands", mod_oilsands_ui("oilsands_1"))
     ))
   )
 }

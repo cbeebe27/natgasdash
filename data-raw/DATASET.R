@@ -7,7 +7,23 @@ library(tidyverse)
 
 
 s1 <- readxl::read_excel("C:/Users/conno/OneDrive/Desktop/Winter 24/FINTECH 3/natgastables.xlsx", sheet = 1)
-s1 <- s1 %>%  dplyr::mutate(Year =  lubridate::make_date(Year))
+s1 <- s1 %>%
+  dplyr::mutate(Year =  lubridate::make_date(Year)) %>%
+  tidyr::pivot_longer(cols = 2:10,
+                      names_to = 'series',
+                      values_to = 'value') %>%
+  dplyr::mutate(series = dplyr::case_when(
+    series %in% 'PSAC 1' ~ 'PSAC 1 (Foothills)',
+    series %in% 'PSAC 2' ~ 'PSAC 2 (Foothills Front)',
+    series %in% 'PSAC 3' ~ 'PSAC 3 (Southeastern AB)',
+    series %in% 'PSAC 4' ~ 'PSAC 4 (East Central AB)',
+    series %in% 'PSAC 5' ~ 'PSAC 5 (Central AB)',
+    series %in% 'PSAC 6' ~ 'PSAC 6 (Northeastern AB)',
+    series %in% 'PSAC 7' ~ 'PSAC 7 (Northwestern AB)',
+    series %in% 'Shale gas' ~ 'Shale Gas',
+    series %in% 'Gas from oil wells' ~ 'Gas from oil wells',
+    series %in% 'CBM' ~ 'Coal Bed Methane',
+    TRUE ~ ''))
 usethis::use_data(s1, overwrite = T)
 
 
@@ -24,7 +40,11 @@ usethis::use_data(s3, overwrite = T)
 
 
 s4 <-  readxl::read_excel("C:/Users/conno/OneDrive/Desktop/Winter 24/FINTECH 3/natgastables.xlsx", sheet = 4)
-s4 <- s4 %>%  dplyr::mutate(Year =  lubridate::make_date(Year))
+s4 <- s4 %>%
+  dplyr::mutate(Year =  lubridate::make_date(Year)) %>%
+  tidyr::pivot_longer(cols = 2:7,
+                          names_to = 'series',
+                          values_to = 'values')
 usethis::use_data(s4, overwrite = T)
 
 

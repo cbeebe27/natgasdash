@@ -10,6 +10,7 @@ Description: This package acts as a visualization dashboard to better enhance th
 License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.2),
+    dplyr,
     golem (>= 0.4.1),
     magrittr,
     plotly,
