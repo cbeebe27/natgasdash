@@ -27,7 +27,7 @@ mod_overview_ui <- function(id) {
       shiny::tags$p("Users are encouraged to leverage the filtering capabilities for a more tailored analysis experience.
                     Hopefully this dadhboard assists in telling the story behind Alberta's natural gas history.",
                     style = "color: #333; text-align: justify; margin: 20px;"),
-      shiny::tags$div(style = "height: 100%; overflow-y: auto;") # Ensure the content is scrollable
+      shiny::tags$div(style = "height: 100%; overflow-y: auto;")
     )
   )
 }

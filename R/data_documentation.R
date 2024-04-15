@@ -53,6 +53,15 @@ NULL
 #' @name s5
 NULL
 
+#' Shale Well Data Long (s5l)
+#'
+#' This dataset contains annual shale well data in number of wells, as well as Alberta Plant gate price in Cdn$/GJ.
+#' The data was extracted from the 'ST98-NaturalGas-SupplyDemand-data.xlsx' Excel file.
+#' @format A data frame with 33 rows and 4 columns.
+#' @source Original data was sourced from [https://www.aer.ca/providing-information/data-and-reports/statistical-reports/st98/statistics-and-data].
+#' @name s5l
+NULL
+
 #' Gas Demand Data (s7)
 #'
 #' This dataset contains annual gas demand  by source in million cubic meters per day.

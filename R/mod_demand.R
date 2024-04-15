@@ -105,7 +105,7 @@ mod_demand_server <- function(id, r){
         r$s7
       } else {
         r$s7 %>%
-          dplyr::select(Year, all_of(input$select_series))
+          dplyr::select(Year, tidyselect::all_of(input$select_series))
       }
 
       plotly::plot_ly(

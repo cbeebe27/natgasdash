@@ -26,7 +26,7 @@ mod_oilsands_ui <- function(id) {
               shiny::checkboxGroupInput(
                 ns("selected_series"),
                 label = NULL,
-                choices = NULL,  # This will be populated dynamically in the server function
+                choices = NULL,
                 selected = NULL,
                 inline = FALSE
               )
