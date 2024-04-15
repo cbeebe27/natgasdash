@@ -54,7 +54,9 @@ usethis::use_data(s4, overwrite = T)
 s5 <-  readxl::read_excel("C:/Users/conno/OneDrive/Desktop/Winter 24/FINTECH 3/natgastables.xlsx", sheet = 5)
 s5 <- s5 %>%  dplyr::mutate(Year =  lubridate::make_date(Year))
 usethis::use_data(s5, overwrite = T)
-
+s5l <- s5 %>% dplyr::select(1:3) %>%
+  tidyr::pivot_longer(cols = 2:3, names_to = 'series', values_to = 'values')
+usethis::use_data(s5l, overwrite = T)
 
 s7 <-  readxl::read_excel("C:/Users/conno/OneDrive/Desktop/Winter 24/FINTECH 3/natgastables.xlsx", sheet = 6)
 s7 <- s7 %>%  dplyr::mutate(Year =  lubridate::make_date(Year))

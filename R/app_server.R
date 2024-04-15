@@ -12,6 +12,7 @@ app_server <- function(input, output, session) {
   r$s2p <- natgasdash::s2p
   r$s4 <- natgasdash::s4
   r$s5 <- natgasdash::s5
+  r$s5l <- natgasdash::s5l
   r$s7 <- natgasdash::s7
   r$s9 <- natgasdash::s9
   r$s10 <- natgasdash::s10
@@ -21,6 +22,7 @@ app_server <- function(input, output, session) {
   mod_oilsands_server("oilsands_1", r = r)
   mod_demand_server("demand_1", r = r)
   mod_permitting_producingwells_server("permitting_producingwells_1", r = r)
+  mod_overview_server("overview_1")
   # Your application server logic
 }
 

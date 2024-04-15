@@ -7,14 +7,28 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_bitumen_ui <- function(id){
+mod_bitumen_ui <- function(id) {
   ns <- NS(id)
-  tagList(
-    shiny::tabPanel("bitumen")
-
-  )
- plotly::plotlyOutput(ns("Bitumen"))
+  shiny::mainPanel(
+    shiny::fluidPage(
+      shiny::tags$h3("Bitumen", style = "color: #333; text-align: center; margin-top: 20px;"),
+      shiny::tags$h4("Average Daily Gas Production From Bitumen Upgrading And Bitumen Wells",
+                     style = "color: #333; text-align: center; margin-top: 5px;"),
+      shiny::tags$p("This bar chart represents the average daily production of gas from bitumen upgrading processes and bitumen wells,
+                    demonstrating the significant contribution of Alberta's oil sands to the province's natural gas output.
+                    The visualization helps users track and analyze the production volumes over time, facilitating insights
+                             into trends and potential future production shifts.",
+                    style = "color: #333; text-align: center; margin-top: 20px;"),
+      shiny::fluidRow(
+        shiny::column(
+          width = 12,
+          plotly::plotlyOutput(ns("Bitumen"), height = "600px")
+        )
+        )
+      )
+    )
 }
+
 
 #' bitumen Server Functions
 #'
@@ -41,3 +55,5 @@ mod_bitumen_server <- function(id, r){
 
 ## To be copied in the server
 # mod_bitumen_server("bitumen_1")
+
+

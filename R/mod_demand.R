@@ -11,38 +11,56 @@ mod_demand_ui <- function(id) {
   ns <- NS(id)
   shiny::mainPanel(
     shiny::fluidPage(
+      shiny::tags$h3("Demand", style = "color: black; text-align: center; margin-top: 20px;"),
+      shiny::tags$h4("an Overview of Demand Across Various Sectors", style = "color: #333; text-align: center; margin-top: 20px;"),
+      shiny::tags$p(
+        "The Demand visualizations provide an overview
+            of natural gas usage across various sectors in Alberta. The top chart, using stacked bars, quantifies
+            the total gas demand for removals and by sector, painting a picture of consumption trends over the years.
+            The line chart below offers a clearer view of each sector's demand trajectory, facilitating an easy comparison of
+            consumption patterns across time. Together, these graphs serve as a tool for understanding sector-specific gas utilization and
+            projecting future trends.",
+        style = "color: #333;"),
       shiny::fluidRow(
-        shiny::column(3, shiny::uiOutput(ns("action_buttons"))),
-        shiny::column(9, plotly::plotlyOutput(ns("bar")))
+        shiny::column(
+          width = 3,
+          style = "background-color: black; color: white; padding: 10px;",
+          shiny::tags$h4("Series Selection:", style = "color: white;"),
+          shiny::tags$p("Check the series you want to display on the bar chart:", style = "color: white;"),
+          shiny::uiOutput(ns("action_buttons"))
+        ),
+        shiny::column(width = 9, plotly::plotlyOutput(ns("bar")))
       ),
       shiny::fluidRow(
-        shiny::column(3, shiny::selectInput(ns("select_series"), "Select Series:", choices = c("All",
-                                                                                               "Commercial",
-                                                                                               "Residential",
-                                                                                               "Transportation",
-                                                                                               "Electricity -generation",
-                                                                                               "Industrial - oil sands",
-                                                                                               "Industrial - petrochemical",
-                                                                                               "Other - industrial",
-                                                                                               "Removals",
-                                                                                               "Reprocessing plant shrinkage"))),
-        shiny::column(9, plotly::plotlyOutput(ns("line")))
+        shiny::column(
+          width = 3,
+          style = "background-color: black; color: white; padding: 10px;",
+          shiny::tags$h4("Series Filter:", style = "color: white;"),
+          shiny::tags$p("Select a series to display on the line chart:", style = "color: white;"),
+          shiny::uiOutput(ns("select_series_input"))
+        ),
+        shiny::column(width = 9, plotly::plotlyOutput(ns("line")))
       )
-    )
-  )
+          )
+        )
+
+
+
 }
+
+
 
 
 mod_demand_server <- function(id, r){
   moduleServer(id, function(input, output, session){
     ns <- session$ns
 
-    # Reactive for storing the series options
+
     series_names <- reactive({
       c("All", names(r$s7)[-1])
     })
 
-    # Action buttons for the bar chart
+
     output$action_buttons <- renderUI({
       req(series_names())
       shiny::checkboxGroupInput(ns("selected_series"), "Select series:",
@@ -50,17 +68,17 @@ mod_demand_server <- function(id, r){
                                 selected = series_names())
     })
 
-    # Dropdown for the line chart
+
     output$select_series_input <- renderUI({
       shiny::selectInput(ns("select_series"), "Select Series",
                          choices = series_names(),
                          selected = "All")
     })
 
-    # Render the bar chart based on the checkbox selection
+
     output$bar <- plotly::renderPlotly({
       req(input$selected_series)
-      # Use the selected series to filter the data
+
       data <- r$s7 %>%
         tidyr::pivot_longer(cols = -Year, names_to = 'series', values_to = 'value') %>%
         dplyr::filter(series %in% input$selected_series)
@@ -79,10 +97,10 @@ mod_demand_server <- function(id, r){
 
     })
 
-    # Render the line chart based on dropdown input
+
     output$line <- plotly::renderPlotly({
       req(input$select_series)
-      # If "All" is selected, use all series, else filter for the selected series
+
       data <- if (input$select_series == "All") {
         r$s7
       } else {
