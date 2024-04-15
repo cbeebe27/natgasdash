@@ -31,6 +31,9 @@ usethis::use_data(s1, overwrite = T)
 s2 <-  readxl::read_excel("C:/Users/conno/OneDrive/Desktop/Winter 24/FINTECH 3/natgastables.xlsx", sheet = 2)
 s2 <- s2 %>%  dplyr::mutate(Year =  lubridate::make_date(Year))
 usethis::use_data(s2, overwrite = T)
+s2p <- s2 %>%
+  dplyr::filter(HVM == 'Horizontal' | HVM == 'Vertical')
+usethis::use_data(s2p, overwrite = T)
 
 
 

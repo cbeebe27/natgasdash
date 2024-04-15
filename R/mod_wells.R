@@ -27,8 +27,7 @@ mod_wells_server <- function(id, r){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
     output$wells <- plotly::renderPlotly({
-      r$s2 %>%
-        dplyr::filter(HVM == 'Horizontal' | HVM == 'Vertical') %>%
+      r$s2p %>%
         plotly::plot_ly(x = ~Year,
                         y = ~`Wells placed on production`,
                         color = ~HVM,

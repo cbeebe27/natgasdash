@@ -17,6 +17,15 @@ NULL
 #' @name s2
 NULL
 
+#' Wells Placed On Production Data, Horizontal and Vertical (s2p)
+#'
+#' This dataset contains annual wells placed on production data, as well as marketable production in million cubic meters per day.
+#' The data was extracted from the 'ST98-NaturalGas-SupplyDemand-data.xlsx' Excel file.
+#' @format A data frame with 58 rows and 3 columns.
+#' @source Original data was sourced from [https://www.aer.ca/providing-information/data-and-reports/statistical-reports/st98/statistics-and-data].
+#' @name s2p
+NULL
+
 #' Bitumen Well Data (s3)
 #'
 #' This dataset contains annual bitumen well data in million cubic meters per day.
