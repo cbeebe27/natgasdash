@@ -1,19 +1,24 @@
-(FIN-488) Fintech 3 Final Project. A class aimed to develop production-grade web apps In Finance.
+# FIN-488 Fintech 3 Final Project
 
-Author: Connor Beebe, University of Alberta
+## A class aimed to develop production-grade web apps in Finance.
 
-AECO Natural Gas Dashboard
-Package name: (natgasdash)
-natgasdash is an interactive dashboard to explore the annual AECO data release. 
+**Author:** Connor Beebe, University of Alberta
 
-It aims to help explore relationships and trends in the data, and present it in a visual manner that is not seen in the release itself.
+---
 
+## AECO Natural Gas Dashboard
 
-Installation
-You can install the development version of natgasdash like this:
+**Package name:** `natgasdash`
 
+`natgasdash` is an interactive dashboard designed to explore the annual AECO data release. It provides tools for users to uncover relationships and trends within the data and presents them in a visual format not available in the original release.
+
+---
+
+### Installation
+
+You can install the development version of `natgasdash` from GitHub:
+
+```r
+# Install the development version from GitHub:
 # install.packages("devtools")
 devtools::install_github("cbeebe27/natgasdash")
-Running the app
-library(natgasdash)
-natgasdash::run_app()
